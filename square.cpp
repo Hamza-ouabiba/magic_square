@@ -41,61 +41,81 @@ int genr()
     int z = rand() % 9;
     return z;
 }
+bool verifier(int **carre)
+{
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+            if(carre[i][j] ==0)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 void carreMagi(int **carre,int *ligne,int *colonne,int *nombre)
 {
      srand(time(NULL));
      //pour les lignes :
-     if(*ligne == 0)
+     if(verifier(carre) == true)
      {
-         //incrémenter les lignes :
-         if(*colonne+1 <= 2)
-         {
-             //incrémenter la colonne :
-             if(carre[*ligne+2][*colonne+1] == 0)
+         if(*ligne == 0)
              {
-                 *colonne+=1;
-                 *ligne+=2;
-                 carre[*ligne][*colonne] = *nombre+=1;
-             }
-         } else
-         {
-             if(carre[*ligne+1][*colonne]== 0)
+                 //incrémenter les lignes :
+                 if(*colonne+1 <= 2)
+                 {
+                     //incrémenter la colonne :
+                     if(carre[*ligne+2][*colonne+1] == 0)
+                     {
+                         *colonne+=1;
+                         *ligne+=2;
+                         carre[*ligne][*colonne] = *nombre+=1;
+                     }
+                 } else
+                 {
+                     if(carre[*ligne+1][*colonne]== 0)
+                     {
+                         carre[*ligne+1][*colonne] = *nombre+=1;
+                         *ligne+=1;
+                     }
+                 }
+             } else
              {
-                 carre[*ligne+1][*colonne] = *nombre+=1;
-                 *ligne+=1;
+                 if(*colonne+1 > 2)
+                 {
+
+                     if(carre[*ligne-1][0] ==0)
+                     {
+                         *ligne = *ligne-1;
+                         *colonne=0;
+                         carre[*ligne][*colonne] = *nombre+=1;
+                     } else
+                     {
+                        carre[*ligne+1][*colonne] = *nombre+=1;
+                     }
+                 } else
+                 {
+
+                     if(carre[*ligne-1][*colonne+1] == 0)
+                     {
+
+                         *colonne+=1;
+                         *ligne-=1;
+                         carre[*ligne][*colonne] = *nombre+=1;
+                     } else
+                     {
+                         *ligne+=1;
+                         carre[*ligne][*colonne] = *nombre+=1;
+                     }
+                 }
              }
-         }
+             carreMagi(carre,ligne,colonne,nombre);
      } else
      {
-         if(*colonne+1 > 2)
-         {
-
-             if(carre[*ligne-1][0] ==0)
-             {
-                 *ligne = *ligne-1;
-                 *colonne=0;
-                 carre[*ligne][*colonne] = *nombre+=1;
-             } else
-             {
-                carre[*ligne+1][*colonne] = *nombre+=1;
-             }
-         } else
-         {
-
-             if(carre[*ligne-1][*colonne+1] == 0)
-             {
-
-                 *colonne+=1;
-                 *ligne-=1;
-                 carre[*ligne][*colonne] = *nombre+=1;
-             } else
-             {
-                 *ligne+=1;
-                 carre[*ligne][*colonne] = *nombre+=1;
-             }
-         }
+            return;
      }
-     //pour les colonnes :
 
 }
 
@@ -107,13 +127,6 @@ int main()
     int j;
     int ligne = 0;
     int colonne = 1;
-    carreMagi(carre,&ligne,&colonne,&nombre);
-    carreMagi(carre,&ligne,&colonne,&nombre);
-    carreMagi(carre,&ligne,&colonne,&nombre);
-    carreMagi(carre,&ligne,&colonne,&nombre);
-    carreMagi(carre,&ligne,&colonne,&nombre);
-    carreMagi(carre,&ligne,&colonne,&nombre);
-    carreMagi(carre,&ligne,&colonne,&nombre);
     carreMagi(carre,&ligne,&colonne,&nombre);
     afficherCarre(carre,3);
     return 0;
