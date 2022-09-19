@@ -68,7 +68,7 @@ void MagicSquare(int **square,int *rows,int *col,int *num,int size)
                      //incrémenter la colonne :
                      if(square[*rows+size][*col+1] == 0)
                      {
-                         *colonne+=1;
+                         *col+=1;
                          *rows+=size;
                          square[*rows][*col] = *num+=1;
                      }
@@ -88,11 +88,11 @@ void MagicSquare(int **square,int *rows,int *col,int *num,int size)
                      if(square[*rows-1][0] ==0)
                      {
                          *rows = *rows-1;
-                         *colonne=0;
-                         carre[*rows][*col] = *num+=1;
+                         *col=0;
+                         square[*rows][*col] = *num+=1;
                      } else
                      {
-                        carre[*rows+1][*col] = *num+=1;
+                        square[*rows+1][*col] = *num+=1;
                      }
                  } else
                  {
@@ -100,17 +100,17 @@ void MagicSquare(int **square,int *rows,int *col,int *num,int size)
                      if(square[*rows-1][*col+1] == 0)
                      {
 
-                         *colonne+=1;
+                         *col+=1;
                          *rows-=1;
-                         carre[*rows][*col] = *num+=1;
+                         square[*rows][*col] = *num+=1;
                      } else
                      {
-                         *ligne+=1;
-                         carre[*rows][*col] = *num+=1;
+                         *rows+=1;
+                         square[*rows][*col] = *num+=1;
                      }
                  }
              }
-             carreMagi(square,rows,col,num,size);
+             MagicSquare(square,rows,col,num,size);
      } else
      {
          return;
@@ -134,9 +134,9 @@ int main()
     } while(ordre%2 == 0);
     colonne = ordre/2;
     ligne = 0;
-    carre = initialiserCarre(ordre);
+    carre = CreatintSquare(ordre);
     nombre = carre[0][ordre/2];
-    carreMagi(carre,&ligne,&colonne,&nombre,ordre-1);
+    MagicSquare(carre,&ligne,&colonne,&nombre,ordre-1);
     afficherCarre(carre,ordre);
     return 0;
 }
