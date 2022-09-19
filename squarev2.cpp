@@ -6,10 +6,10 @@ int **initialiserCarre(int ordre)
 {
     int i;
     int j;
-    int **b = (int **)malloc(sizeof(int *)*ordre);
+    int **b = new int*[ordre];
     for(i=0;i<ordre;i++)
     {
-        b[i] = (int *)malloc(sizeof(int)*ordre);
+        b[i] = new int[ordre];
     }
     //initialiser a 0;
     for(i=0;i<ordre;i++)
