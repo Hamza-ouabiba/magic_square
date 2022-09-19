@@ -55,6 +55,12 @@ bool verify(int **carre,int ordre)
     }
     return false;
 }
+void initialiseRowCol(int *row,int *col,int size,int **square,int *num)
+{
+    *num = square[0][size/2];
+    *row = 0;
+    *col = size/2;
+}
 void MagicSquare(int **square,int *rows,int *col,int *num,int size)
 {
      //pour les lignes :
@@ -119,25 +125,24 @@ void MagicSquare(int **square,int *rows,int *col,int *num,int size)
 
 int main()
 {
-    int **carre;
-    int i;
-    int j;
-    int nombre;
-    int ligne = 0;
-    int colonne;
-    int ordre;
+    int **square;
+    int number;
+    int row =0;
+    int col;
+    int size;
     do
     {
-         cout<<"Donner un ordre :";cin>>ordre;
-         if(ordre%2 == 0)
+         cout<<"Donner un ordre :";cin>>size;
+         if(size%2 == 0)
            cout<<"only odd numbers : ";
-    } while(ordre%2 == 0);
-    colonne = ordre/2;
-    ligne = 0;
-    carre = CreatintSquare(ordre);
-    nombre = carre[0][ordre/2];
-    MagicSquare(carre,&ligne,&colonne,&nombre,ordre-1);
-    afficherCarre(carre,ordre);
+    } while(size%2 == 0);
+    //creating square :
+    square = CreatintSquare(size);
+    //initializing row and col of the square :
+    initialiseRowCol(&row,&col,size,square,&number);
+    //final magic square
+    MagicSquare(square,&row,&col,&number,size-1);
+    afficherCarre(square,size);
     return 0;
 }
 
