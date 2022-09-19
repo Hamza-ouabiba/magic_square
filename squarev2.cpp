@@ -127,7 +127,12 @@ int main()
     int ligne = 0;
     int colonne;
     int ordre;
-    cout<<"Donner un ordre :";cin>>ordre;
+    do
+    {
+         cout<<"Donner un ordre :";cin>>ordre;
+         if(ordre%2 == 0)
+           cout<<"only odd numbers : ";
+    } while(ordre%2 == 0);
     colonne = ordre/2;
     ligne = 0;
     carre = initialiserCarre(ordre);
