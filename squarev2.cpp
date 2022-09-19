@@ -60,32 +60,32 @@ void MagicSquare(int **square,int *rows,int *col,int *num,int size)
      //pour les lignes :
      if(verify(square,size+1) == true)
      {
-         if(*ligne == 0)
+         if(*rows == 0)
              {
                  //incrémenter les lignes :
                  if(*col+1 <= size)
                  {
                      //incrémenter la colonne :
-                     if(carre[*rows+size][*col+1] == 0)
+                     if(square[*rows+size][*col+1] == 0)
                      {
                          *colonne+=1;
                          *rows+=size;
-                         carre[*rows][*col] = *num+=1;
+                         square[*rows][*col] = *num+=1;
                      }
                  } else
                  {
-                     if(carre[*rows+1][*col]== 0)
+                     if(square[*rows+1][*col]== 0)
                      {
-                         carre[*rows+1][*col] = *num+=1;
+                         square[*rows+1][*col] = *num+=1;
                          *rows+=1;
                      }
                  }
              } else
              {
-                 if(*colonne+1 > size)
+                 if(*col+1 > size)
                  {
 
-                     if(carre[*rows-1][0] ==0)
+                     if(square[*rows-1][0] ==0)
                      {
                          *rows = *rows-1;
                          *colonne=0;
@@ -97,7 +97,7 @@ void MagicSquare(int **square,int *rows,int *col,int *num,int size)
                  } else
                  {
 
-                     if(carre[*rows-1][*col+1] == 0)
+                     if(square[*rows-1][*col+1] == 0)
                      {
 
                          *colonne+=1;
