@@ -141,8 +141,6 @@ int main()
     //initializing row and col of the square :
     initialiseRowCol(&row,&col,size,square,&number);
     //final magic square
-    cout<<endl;
-    cout<<endl;cout<<endl;cout<<endl;cout<<endl;cout<<endl;cout<<endl;cout<<endl;
     MagicSquare(square,&row,&col,&number,size-1);
     afficherCarre(square,size);
     return 0;
