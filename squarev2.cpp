@@ -1,8 +1,8 @@
 #include<iostream>
-#include<conio>
+#include<conio.h>
 using namespace::std;
 //créer le carré magique :
-int **CreatintSquare(int size)
+int **CreatingSquare(int size)
 {
     int i;
     int j;
@@ -137,10 +137,12 @@ int main()
            cout<<"only odd numbers : ";
     } while(size%2 == 0);
     //creating square :
-    square = CreatintSquare(size);
+    square = CreatingSquare(size);
     //initializing row and col of the square :
     initialiseRowCol(&row,&col,size,square,&number);
     //final magic square
+    cout<<endl;
+    cout<<endl;cout<<endl;cout<<endl;cout<<endl;cout<<endl;cout<<endl;cout<<endl;
     MagicSquare(square,&row,&col,&number,size-1);
     afficherCarre(square,size);
     return 0;
